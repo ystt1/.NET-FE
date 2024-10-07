@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import './Navbar.css'
 import cartIcon from '../Assets/shopping-cart.svg'
+import { Link } from 'react-router-dom'
 
 export const Navbar = () => {
-    const [menu,setMenu]=useState("0")
+    const [menu,setMenu]=useState("shop")
     return (
         <div className='navbar'>
             <div className='nav-logo'>
@@ -11,16 +12,20 @@ export const Navbar = () => {
                 <p>Lưu Niệm</p>
             </div>
             <ul className="nav-menu">
-                <li onClick={()=>setMenu("0")}>Shop{menu==="0"?<hr/>:<></>}</li>
-                <li onClick={()=>setMenu("1")}>Đồ địa phương{menu==="1"?<hr/>:<></>}</li>
-                <li onClick={()=>setMenu("2")}>Đồ du lịch{menu==="2"?<hr/>:<></>}</li>
-                <li onClick={()=>setMenu("3")}>Đồ sự kiện{menu==="3"?<hr/>:<></>}</li>
+                <li onClick={()=>setMenu("shop")}><Link to='/' style={{textDecoration:'none'}}>Shop</Link> {menu==="shop"? <hr/>:<></>}</li>
+                <li onClick={()=>setMenu("local")}><Link to='/local' style={{textDecoration:'none'}}>Đồ địa phương</Link>{menu==="local"?<hr/>:<></>}</li>
+                <li onClick={()=>setMenu("travel")}><Link to='/travel' style={{textDecoration:'none'}}>Đồ du lịch</Link>{menu==="travel"?<hr/>:<></>}</li>
+                <li onClick={()=>setMenu("special")}><Link to='/special' style={{textDecoration:'none'}}>Đồ sự kiện</Link>{menu==="special"?<hr/>:<></>}</li>
             </ul>
             <div className="nav-login-cart">
+                <Link to='/login' style={{textDecoration:'none'}}>
                 <button>
                     Đăng nhập
                 </button>
+                </Link>
+                <Link to='/cart' style={{textDecoration:'none'}}>
                 <img src={cartIcon} alt="" />
+                </Link>
                 <div className='nav-cart-count'>
                     0
                 </div>
